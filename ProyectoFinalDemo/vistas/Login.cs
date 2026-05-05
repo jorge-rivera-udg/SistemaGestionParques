@@ -32,13 +32,13 @@ namespace ProyectoFinalDemo.vistas
         private void btnLogin_Click(object sender, EventArgs e)
         {
             sesion.Usuario = admctrl.validarLogin(txtUsuario.Text,txtPassword.Text);
-            Console.WriteLine($"usuario en login: {sesion.Usuario.ToString()}");
             if(sesion.Usuario == null)
             {
                 MessageBox.Show("Nombre de usuario/contrasena incorrectos.");
             }
             else
             {
+                Console.WriteLine($"usuario en login: {sesion.Usuario.ToString()}");
                 MessageBox.Show($"Bienvenido {sesion.Usuario.Nombres}!!");
                 this.Dispose(true);
             }

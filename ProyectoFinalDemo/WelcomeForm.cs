@@ -13,17 +13,19 @@ using System.Windows.Forms;
 
 namespace ProyectoFinalDemo
 {
-    public partial class Form1 : Form
+    public partial class WelcomeForm : Form
     {
-        private AdministradorForm adminForm;
+        private GestionUsuarioForm usersForm;
+        private GestionCatalogosForm catalogosForm;
         private Sesion sesion;
         private Login login;
-        public Form1()
+        public WelcomeForm()
         {
             InitializeComponent();
             resetStatus();
             sesion = new Sesion();
-            adminForm = new AdministradorForm("usuario");
+            //usersForm = new GestionUsuarioForm("usuario");
+            catalogosForm = new GestionCatalogosForm();
             this.Activated += new EventHandler(check_status);
             this.Deactivate += new EventHandler(bye_for_now);
         }
@@ -48,9 +50,8 @@ namespace ProyectoFinalDemo
 
         private void user_register_Click(object sender, EventArgs e)
         {
-            if (adminForm.IsDisposed)
-                adminForm = new AdministradorForm("usuario");
-            adminForm.Show();
+            usersForm = new GestionUsuarioForm("usuario");
+            usersForm.Show();
         }
 
         private void check_status(object sender, EventArgs e)
@@ -110,5 +111,45 @@ namespace ProyectoFinalDemo
             menuReportes.Enabled = false;
             menuParques.Enabled = false;
         }
-}
+
+        private void admin_catalogos_Click(object sender, EventArgs e)
+        {
+            if (catalogosForm.IsDisposed)
+            {
+                catalogosForm = new GestionCatalogosForm();
+            }
+            catalogosForm.Show();
+        }
+
+        private void admin_users_Click(object sender, EventArgs e)
+        {
+            usersForm = new GestionUsuarioForm("admin");
+            usersForm.Show();
+        }
+
+        private void listadoParques_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void busquedaParques_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void admin_parques_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void admin_actividades_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void admin_reportes_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

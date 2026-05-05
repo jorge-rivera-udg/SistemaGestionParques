@@ -96,22 +96,51 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="common\Sesion.cs" />
+    <Compile Include="controladores\ActividadController.cs" />
     <Compile Include="controladores\AdministradorController.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="controladores\CategoriaController.cs" />
+    <Compile Include="controladores\CondicionController.cs" />
+    <Compile Include="controladores\EstadoController.cs" />
+    <Compile Include="controladores\FotoController.cs" />
+    <Compile Include="controladores\ParqueController.cs" />
+    <Compile Include="controladores\ReporteController.cs" />
+    <Compile Include="controladores\ParticipacionController.cs" />
+    <Compile Include="utils\ImagenUtils.cs" />
+    <Compile Include="vistas\GestionCatalogosForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="vistas\GestionCatalogosForm.Designer.cs">
+      <DependentUpon>GestionCatalogosForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistas\Parques\GestionParquesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistas\Parques\GestionParquesForm.Designer.cs">
+      <DependentUpon>GestionParquesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WelcomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WelcomeForm.Designer.cs">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="modelos\Actividad.cs" />
     <Compile Include="modelos\Administrador.cs" />
+    <Compile Include="modelos\Categoria.cs" />
+    <Compile Include="modelos\Condicion.cs" />
+    <Compile Include="modelos\Estado.cs" />
+    <Compile Include="modelos\Foto.cs" />
+    <Compile Include="modelos\Parque.cs" />
+    <Compile Include="modelos\Reporte.cs" />
+    <Compile Include="modelos\Participacion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utils\Constantes.cs" />
-    <Compile Include="vistas\AdministradorForm.cs">
+    <Compile Include="vistas\GestionUsuarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="vistas\AdministradorForm.Designer.cs">
-      <DependentUpon>AdministradorForm.cs</DependentUpon>
+    <Compile Include="vistas\GestionUsuarioForm.Designer.cs">
+      <DependentUpon>GestionUsuarioForm.cs</DependentUpon>
     </Compile>
     <Compile Include="vistas\Login.cs">
       <SubType>Form</SubType>
@@ -119,14 +148,14 @@
     <Compile Include="vistas\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="vistas\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vistas\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="vistas\GestionCatalogosForm.resx">
+      <DependentUpon>GestionCatalogosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\Parques\GestionParquesForm.resx">
+      <DependentUpon>GestionParquesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WelcomeForm.resx">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -138,17 +167,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="vistas\AdministradorForm.resx">
-      <DependentUpon>AdministradorForm.cs</DependentUpon>
+    <EmbeddedResource Include="vistas\GestionUsuarioForm.resx">
+      <DependentUpon>GestionUsuarioForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vistas\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="vistas\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\MySqlX.XDevAPI.Relational.SqlResult.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -162,6 +187,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
