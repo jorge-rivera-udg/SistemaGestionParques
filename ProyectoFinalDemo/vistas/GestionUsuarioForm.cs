@@ -12,29 +12,35 @@ using System.Windows.Forms;
 
 namespace ProyectoFinalDemo.vistas
 {
-    public partial class AdministradorForm : Form
+    public partial class GestionUsuarioForm : Form
     {
         private string tipo_usuario;
         private Administrador admin;
         private List<Administrador> lista;
         private AdministradorController adminController;
-        public AdministradorForm(string u)
+        public GestionUsuarioForm(string u)
         {
             adminController = new AdministradorController();
             InitializeComponent();
             tipo_usuario = u;
             resetCampos();
-            if (u.ToUpper() == "usuario")
+            Console.WriteLine($"tipo de usuario: {u}");
+            if (u.ToLower() == "usuario")
             {
                 comboBox1.Visible = false;
                 comboBox2.Visible = false;
                 label8.Visible = false;
                 label9.Visible = false;
                 listaUsuarios.Visible = false;
+                btnDesactivar.Visible = false;
             }
             if (u.ToLower() == "admin")
             {
                 listaUsuarios.Visible = true;
+                txtUsuario.Enabled = false;
+                txtContrasena2.Visible = false;
+                label11.Visible = false;
+                Console.WriteLine($"usuario: {u}");
             }
             cargarUsuarios();
         }
@@ -73,7 +79,7 @@ namespace ProyectoFinalDemo.vistas
                 MessageBox.Show("Por favor, complete todos los campos obligatorios.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!txtContrasena.Text.Equals(txtContrasena2.Text))
+            if (!txtContrasena.Text.Equals(txtContrasena2.Text) && tipo_usuario.ToLower() == "usuario" )
             {
                 MessageBox.Show("Las contrasenas no coinciden", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -116,6 +122,10 @@ namespace ProyectoFinalDemo.vistas
             {
                 admin.Avatar = pictureBox1.Image;
             }
+            if (!string.IsNullOrEmpty(lblId.Text))
+            {
+                admin.Id = Convert.ToInt32(lblId.Text);
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -123,14 +133,7 @@ namespace ProyectoFinalDemo.vistas
             if (ValidarCampos())
             {
                 cargarModelo();
-                if (adminController.insertar(admin))
-                {
-                    resetCampos();
-                }
-                if (tipo_usuario == "usuario")
-                {
-                    this.Dispose();
-                }
+                accionesPostGuardar(adminController.insertar(admin));
 
             }
         }
@@ -139,10 +142,20 @@ namespace ProyectoFinalDemo.vistas
             if (ValidarCampos())
             {
                 cargarModelo();
-                if (adminController.actualizar(admin))
-                {
-                    resetCampos();
-                }
+                accionesPostGuardar(adminController.actualizar(admin));
+            }
+        }
+
+        private void accionesPostGuardar(bool flag)
+        {
+            if (flag)
+            {
+                resetCampos();
+                cargarUsuarios();
+            }
+            if (tipo_usuario == "usuario")
+            {
+                this.Dispose();
             }
         }
 
@@ -155,7 +168,8 @@ namespace ProyectoFinalDemo.vistas
                 {
                     try
                     {
-                        int id = Int32.Parse(row.Cells[0].Value.ToString());
+                        resetCampos();
+                        int id = Convert.ToInt32(row.Cells[0].Value.ToString());
                         foreach (Administrador item in lista)
                         {
                             if (item.Id == id)
@@ -174,6 +188,7 @@ namespace ProyectoFinalDemo.vistas
                                     comboBox2.Text = item.Estado;
                                     if (item.Avatar != null)
                                     {
+                                        //Console.WriteLine(item.Avatar);
                                         pictureBox1.Image = item.Avatar;
                                     }
                                 } catch(NullReferenceException nre)

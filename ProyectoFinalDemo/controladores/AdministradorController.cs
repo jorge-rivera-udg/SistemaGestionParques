@@ -1,26 +1,27 @@
 ﻿using MySql.Data.MySqlClient;
 using ProyectoFinalDemo.modelos;
+using ProyectoFinalDemo.utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlTypes;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
-using System.IO;
-using ProyectoFinalDemo.utils;
-using System.Data.SqlTypes;
 
 namespace ProyectoFinalDemo.controladores
 {
     public class AdministradorController
     {
-        //private string Constantes.MYSQL_DB_CONNECTION = "Server=localhost;Database=SiGePaVe;User=root;Password=michel12;";//"Server=localhost;Database=SiGePaVe;Uid=root;Pwd=michel12;"
-
         public bool insertar(Administrador administrador)
         {
             using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
             {
+                byte[] bytes = ImageToByteArray(administrador.Avatar);
                 try
                 {
                     conexion.Open();
@@ -35,7 +36,7 @@ namespace ProyectoFinalDemo.controladores
                     comando.Parameters.AddWithValue("@contrasena", administrador.Contrasena);
                     comando.Parameters.AddWithValue("@fdn", administrador.Fdn);
                     comando.Parameters.AddWithValue("@usuario", administrador.Usuario);
-                    comando.Parameters.AddWithValue("@avatar", ImagenABlob(administrador.Avatar));
+                    comando.Parameters.AddWithValue("@avatar", bytes);
                     comando.ExecuteNonQuery();
                     conexion.Close();
                     MessageBox.Show("Usuario registrado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -48,46 +49,42 @@ namespace ProyectoFinalDemo.controladores
                 return true;
             }
         }
-
-        private string ImagenABlob(Image imagen)
+        private byte[] ImageToByteArray(Image image)
         {
-            if(imagen!=null)
+            if (image == null) return new byte[0];
+            using (MemoryStream ms = new MemoryStream())
             {
-                using (MemoryStream ms = new MemoryStream())
+                image.Save(ms, image.RawFormat);
+                return ms.ToArray();
+            }
+        }
+        private Image ByteArrayToImage(byte[] bytes)
+        {
+            if (bytes.Length == 0) return null;
+            try
+            {
+                using (MemoryStream ms = new MemoryStream(bytes))
                 {
-                    imagen.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                    return Convert.ToBase64String(ms.ToArray());
+                    ms.Position = 0;
+                    return Image.FromStream(ms);
                 }
             }
-
-            return "";
-        }
-
-        private Image BlobAImagen(byte[] blob)
-        {
-            using(MemoryStream ms = new MemoryStream(blob))
+            catch (ArgumentException ex)
             {
-                return Image.FromStream(ms);
-            }
-        }
-
-        private Image BlobAImagen(string blob)
-        {
-            byte[] bytes = Convert.FromBase64String(blob);
-            using (MemoryStream ms = new MemoryStream(bytes))
-            {
-                return Image.FromStream(ms);
+                Console.WriteLine($"Invalid parameter: {ex.Message}");
+                return null;
             }
         }
 
         public bool actualizar(Administrador administrador)
         {
+            byte[] bytes = ImageToByteArray(administrador.Avatar);
             try
             {
                 using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
                 {
                     conexion.Open();
-                    string query = "UPDATE administradores SET nombres=@nombres, apellidos=@apellidos, email=@email, telefono=@telefono, estado=@estado, rol=@rol, contrasena=@contrasena, modificado_en=@modificado_en, fdn=@fdn, usuario=@usuario avatar=@avatar WHERE id=@id";
+                    string query = "UPDATE administradores SET nombres=@nombres, apellidos=@apellidos, email=@email, telefono=@telefono, estado=@estado, rol=@rol, contrasena=@contrasena, modificado_en=@modificado_en, fdn=@fdn, usuario=@usuario, avatar=@avatar WHERE id=@id";
                     MySqlCommand comando = new MySqlCommand(query, conexion);
                     comando.Parameters.AddWithValue("@nombres", administrador.Nombres);
                     comando.Parameters.AddWithValue("@apellidos", administrador.Apellidos);
@@ -100,7 +97,7 @@ namespace ProyectoFinalDemo.controladores
                     comando.Parameters.AddWithValue("@fdn", administrador.Fdn);
                     comando.Parameters.AddWithValue("@usuario", administrador.Usuario);
                     comando.Parameters.AddWithValue("@id", administrador.Id);
-                    comando.Parameters.AddWithValue("@avatar", ImagenABlob(administrador.Avatar));
+                    comando.Parameters.AddWithValue("@avatar", bytes);
                     comando.ExecuteNonQuery();
                     conexion.Close();
                 }
@@ -109,6 +106,7 @@ namespace ProyectoFinalDemo.controladores
                 MessageBox.Show($"Error actualizando datos: {ex.Message}");
                 return false;
             }
+            MessageBox.Show("Registro actualizado correctamente");
             return true;
         }
 
@@ -137,22 +135,33 @@ namespace ProyectoFinalDemo.controladores
                 MySqlDataReader reader = comando.ExecuteReader();
                 if (reader.Read())
                 {
-                    administrador = new Administrador
+                    try {
+                        administrador = new Administrador
+                        {
+                            Id = reader.GetInt32("id"),
+                            Nombres = reader.GetString("nombres"),
+                            Apellidos = reader.GetString("apellidos"),
+                            Email = reader.GetString("email"),
+                            Telefono = reader.GetString("telefono"),
+                            Estado = reader.GetString("estado"),
+                            Rol = reader.GetString("rol"),
+                            Contrasena = reader.GetString("contrasena"),
+                            Creado_en = reader.GetDateTime("creado_en"),
+                            Actualizado_en = reader.GetDateTime("modificado_en"),
+                            Fdn = reader.GetDateTime("fdn"),
+                            Usuario = reader.GetString("usuario"),
+                            Avatar = ByteArrayToImage(reader["avatar"] as byte[])
+                        };
+                    }
+                    catch (SqlNullValueException snve)
                     {
-                        Id = reader.GetInt32("id"),
-                        Nombres = reader.GetString("nombres"),
-                        Apellidos = reader.GetString("apellidos"),
-                        Email = reader.GetString("email"),
-                        Telefono = reader.GetString("telefono"),
-                        Estado = reader.GetString("estado"),
-                        Rol = reader.GetString("rol"),
-                        Contrasena = reader.GetString("contrasena"),
-                        Creado_en = reader.GetDateTime("creado_en"),
-                        Actualizado_en = reader.GetDateTime("modificado_en"),
-                        Fdn = reader.GetDateTime("fdn"),
-                        Usuario = reader.GetString("usuario"),
-                        Avatar = BlobAImagen((byte[])reader["avatar"])
-                    };
+                        Console.WriteLine($"Error parsing user data: {snve.Message}");
+                    }
+                    catch (InvalidCastException ice)
+                    {
+                        Console.WriteLine($"Error casting user values: {ice.Message}");
+                    }
+
                 }
                 conexion.Close();
             }
@@ -186,7 +195,7 @@ namespace ProyectoFinalDemo.controladores
                             Actualizado_en = reader.GetDateTime("modificado_en"),
                             Fdn = reader.GetDateTime("fdn"),
                             Usuario = reader.GetString("usuario"),
-                            Avatar = BlobAImagen((byte[])reader["avatar"])
+                            Avatar = ByteArrayToImage(reader["avatar"] as byte[])
                         };
                         administradores.Add(administrador);
                     } catch(SqlNullValueException snve) 
@@ -214,23 +223,34 @@ namespace ProyectoFinalDemo.controladores
                 MySqlDataReader reader = comando.ExecuteReader();
                 while (reader.Read())
                 {
-                    Administrador administrador = new Administrador
+                    try { 
+                        Administrador administrador = new Administrador
+                        {
+                            Id = reader.GetInt32("id"),
+                            Nombres = reader.GetString("nombres"),
+                            Apellidos = reader.GetString("apellidos"),
+                            Email = reader.GetString("email"),
+                            Telefono = reader.GetString("telefono"),
+                            Estado = reader.GetString("estado"),
+                            Rol = reader.GetString("rol"),
+                            Contrasena = reader.GetString("contrasena"),
+                            Creado_en = reader.GetDateTime("creado_en"),
+                            Actualizado_en = reader.GetDateTime("modificado_en"),
+                            Fdn = reader.GetDateTime("fdn"),
+                            Usuario = reader.GetString("usuario"),
+                            Avatar = ByteArrayToImage((byte[])reader["avatar"])
+                        };
+                        administradores.Add(administrador);
+                    }
+                    catch (SqlNullValueException snve)
                     {
-                        Id = reader.GetInt32("id"),
-                        Nombres = reader.GetString("nombres"),
-                        Apellidos = reader.GetString("apellidos"),
-                        Email = reader.GetString("email"),
-                        Telefono = reader.GetString("telefono"),
-                        Estado = reader.GetString("estado"),
-                        Rol = reader.GetString("rol"),
-                        Contrasena = reader.GetString("contrasena"),
-                        Creado_en = reader.GetDateTime("creado_en"),
-                        Actualizado_en = reader.GetDateTime("modificado_en"),
-                        Fdn = reader.GetDateTime("fdn"),
-                        Usuario = reader.GetString("usuario"),
-                        Avatar = BlobAImagen((byte[])reader["avatar"])
-                    };
-                    administradores.Add(administrador);
+                        Console.WriteLine($"Error parsing user data: {snve.Message}");
+                    }
+                    catch (InvalidCastException ice)
+                    {
+                        Console.WriteLine($"Error casting user values: {ice.Message}");
+                    }
+
                 }
                 conexion.Close();
             }
@@ -253,22 +273,33 @@ namespace ProyectoFinalDemo.controladores
                 MySqlDataReader reader = comando.ExecuteReader();
                 if (reader.Read())
                 {
-                    administrador = new Administrador
+                    try { 
+                        administrador = new Administrador
+                        {
+                            Id = reader.GetInt32("id"),
+                            Nombres = reader.GetString("nombres"),
+                            Apellidos = reader.GetString("apellidos"),
+                            Email = reader.GetString("email"),
+                            Telefono = reader.GetString("telefono"),
+                            Estado = reader.GetString("estado"),
+                            Rol = reader.GetString("rol"),
+                            Contrasena = reader.GetString("contrasena"),
+                            Creado_en = reader.GetDateTime("creado_en"),
+                            Actualizado_en = reader.GetDateTime("modificado_en"),
+                            Fdn = reader.GetDateTime("fdn"),
+                            Usuario = reader.GetString("usuario"),
+                            Avatar = ByteArrayToImage(reader["avatar"] as byte[])
+                        };
+                    }
+                    catch (SqlNullValueException snve)
                     {
-                        Id = reader.GetInt32("id"),
-                        Nombres = reader.GetString("nombres"),
-                        Apellidos = reader.GetString("apellidos"),
-                        Email = reader.GetString("email"),
-                        Telefono = reader.GetString("telefono"),
-                        Estado = reader.GetString("estado"),
-                        Rol = reader.GetString("rol"),
-                        Contrasena = reader.GetString("contrasena"),
-                        Creado_en = reader.GetDateTime("creado_en"),
-                        Actualizado_en = reader.GetDateTime("modificado_en"),
-                        Fdn = reader.GetDateTime("fdn"),
-                        Usuario = reader.GetString("usuario"),
-                        Avatar = BlobAImagen((byte[])reader["avatar"])
-                    };
+                        Console.WriteLine($"Error parsing user data: {snve.Message}");
+                    }
+                    catch (InvalidCastException ice)
+                    {
+                        Console.WriteLine($"Error casting user values: {ice.Message}");
+                    }
+
                 }
                 conexion.Close();
             }
@@ -287,22 +318,33 @@ namespace ProyectoFinalDemo.controladores
                 MySqlDataReader reader = comando.ExecuteReader();
                 if (reader.Read())
                 {
-                    administrador = new Administrador
+                    try { 
+                        administrador = new Administrador
+                        {
+                            Id = reader.GetInt32("id"),
+                            Nombres = reader.GetString("nombres"),
+                            Apellidos = reader.GetString("apellidos"),
+                            Email = reader.GetString("email"),
+                            Telefono = reader.GetString("telefono"),
+                            Estado = reader.GetString("estado"),
+                            Rol = reader.GetString("rol"),
+                            Contrasena = reader.GetString("contrasena"),
+                            Creado_en = reader.GetDateTime("creado_en"),
+                            Actualizado_en = reader.GetDateTime("modificado_en"),
+                            Fdn = reader.GetDateTime("fdn"),
+                            Usuario = reader.GetString("usuario"),
+                            Avatar = ByteArrayToImage(reader["avatar"] as byte[])
+                        };
+                    }
+                    catch (SqlNullValueException snve)
                     {
-                        Id = reader.GetInt32("id"),
-                        Nombres = reader.GetString("nombres"),
-                        Apellidos = reader.GetString("apellidos"),
-                        Email = reader.GetString("email"),
-                        Telefono = reader.GetString("telefono"),
-                        Estado = reader.GetString("estado"),
-                        Rol = reader.GetString("rol"),
-                        Contrasena = reader.GetString("contrasena"),
-                        Creado_en = reader.GetDateTime("creado_en"),
-                        Actualizado_en = reader.GetDateTime("modificado_en"),
-                        Fdn = reader.GetDateTime("fdn"),
-                        Usuario = reader.GetString("usuario"),
-                        Avatar = BlobAImagen((byte[])reader["avatar"])
-                    };
+                        Console.WriteLine($"Error parsing user data: {snve.Message}");
+                    }
+                    catch (InvalidCastException ice)
+                    {
+                        Console.WriteLine($"Error casting user values: {ice.Message}");
+                    }
+
                 }
                 conexion.Close();
             }

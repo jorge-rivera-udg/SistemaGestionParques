@@ -1,6 +1,6 @@
 ﻿namespace ProyectoFinalDemo
 {
-    partial class Form1
+    partial class WelcomeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -35,22 +35,20 @@
             this.user_logout = new System.Windows.Forms.ToolStripMenuItem();
             this.user_register = new System.Windows.Forms.ToolStripMenuItem();
             this.menuParques = new System.Windows.Forms.ToolStripMenuItem();
-            this.listadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.busquedaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoParques = new System.Windows.Forms.ToolStripMenuItem();
+            this.busquedaParques = new System.Windows.Forms.ToolStripMenuItem();
             this.menuActividades = new System.Windows.Forms.ToolStripMenuItem();
-            this.listadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.buscarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoActividades = new System.Windows.Forms.ToolStripMenuItem();
+            this.busquedaActividades = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReportes = new System.Windows.Forms.ToolStripMenuItem();
-            this.misReportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listadoToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoReportes = new System.Windows.Forms.ToolStripMenuItem();
+            this.busquedaReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAdmin = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.parquesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.actividadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.categoriasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.estadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.condicionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.admin_users = new System.Windows.Forms.ToolStripMenuItem();
+            this.admin_parques = new System.Windows.Forms.ToolStripMenuItem();
+            this.admin_actividades = new System.Windows.Forms.ToolStripMenuItem();
+            this.admin_reportes = new System.Windows.Forms.ToolStripMenuItem();
+            this.admin_catalogos = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.SGPAMenu.SuspendLayout();
             this.SuspendLayout();
@@ -122,134 +120,127 @@
             // menuParques
             // 
             this.menuParques.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listadoToolStripMenuItem,
-            this.busquedaToolStripMenuItem});
+            this.listadoParques,
+            this.busquedaParques});
+            this.menuParques.Enabled = false;
             this.menuParques.Name = "menuParques";
             this.menuParques.Size = new System.Drawing.Size(85, 27);
             this.menuParques.Text = "Parques";
-            this.menuParques.Enabled = false;
             // 
-            // listadoToolStripMenuItem
+            // listadoParques
             // 
-            this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
-            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.listadoToolStripMenuItem.Text = "Listado";
+            this.listadoParques.Name = "listadoParques";
+            this.listadoParques.Size = new System.Drawing.Size(156, 22);
+            this.listadoParques.Text = "Listado";
+            this.listadoParques.Click += new System.EventHandler(this.listadoParques_Click);
             // 
-            // busquedaToolStripMenuItem
+            // busquedaParques
             // 
-            this.busquedaToolStripMenuItem.Name = "busquedaToolStripMenuItem";
-            this.busquedaToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.busquedaToolStripMenuItem.Text = "Busqueda";
+            this.busquedaParques.Name = "busquedaParques";
+            this.busquedaParques.Size = new System.Drawing.Size(156, 22);
+            this.busquedaParques.Text = "Busqueda";
+            this.busquedaParques.Click += new System.EventHandler(this.busquedaParques_Click);
             // 
             // menuActividades
             // 
             this.menuActividades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listadoToolStripMenuItem1,
-            this.buscarToolStripMenuItem});
+            this.listadoActividades,
+            this.busquedaActividades});
+            this.menuActividades.Enabled = false;
             this.menuActividades.Name = "menuActividades";
             this.menuActividades.Size = new System.Drawing.Size(114, 27);
             this.menuActividades.Text = "Actividades";
-            this.menuActividades.Enabled = false;
             // 
-            // listadoToolStripMenuItem1
+            // listadoActividades
             // 
-            this.listadoToolStripMenuItem1.Name = "listadoToolStripMenuItem1";
-            this.listadoToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
-            this.listadoToolStripMenuItem1.Text = "Listado";
+            this.listadoActividades.Name = "listadoActividades";
+            this.listadoActividades.Size = new System.Drawing.Size(156, 22);
+            this.listadoActividades.Text = "Listado";
             // 
-            // buscarToolStripMenuItem
+            // busquedaActividades
             // 
-            this.buscarToolStripMenuItem.Name = "buscarToolStripMenuItem";
-            this.buscarToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.buscarToolStripMenuItem.Text = "Buscar";
+            this.busquedaActividades.Name = "busquedaActividades";
+            this.busquedaActividades.Size = new System.Drawing.Size(156, 22);
+            this.busquedaActividades.Text = "Busqueda";
             // 
             // menuReportes
             // 
             this.menuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.misReportesToolStripMenuItem,
-            this.listadoToolStripMenuItem2});
+            this.listadoReportes,
+            this.busquedaReportes});
+            this.menuReportes.Enabled = false;
             this.menuReportes.Name = "menuReportes";
             this.menuReportes.Size = new System.Drawing.Size(93, 27);
             this.menuReportes.Text = "Reportes";
-            this.menuReportes.Enabled = false;
             // 
-            // misReportesToolStripMenuItem
+            // listadoReportes
             // 
-            this.misReportesToolStripMenuItem.Name = "misReportesToolStripMenuItem";
-            this.misReportesToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.misReportesToolStripMenuItem.Text = "Listado";
+            this.listadoReportes.Name = "listadoReportes";
+            this.listadoReportes.Size = new System.Drawing.Size(156, 22);
+            this.listadoReportes.Text = "Listado";
             // 
-            // listadoToolStripMenuItem2
+            // busquedaReportes
             // 
-            this.listadoToolStripMenuItem2.Name = "listadoToolStripMenuItem2";
-            this.listadoToolStripMenuItem2.Size = new System.Drawing.Size(156, 22);
-            this.listadoToolStripMenuItem2.Text = "Busqueda";
+            this.busquedaReportes.Name = "busquedaReportes";
+            this.busquedaReportes.Size = new System.Drawing.Size(156, 22);
+            this.busquedaReportes.Text = "Busqueda";
             // 
             // menuAdmin
             // 
             this.menuAdmin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usuariosToolStripMenuItem,
-            this.parquesToolStripMenuItem,
-            this.actividadesToolStripMenuItem,
-            this.reportesToolStripMenuItem,
-            this.categoriasToolStripMenuItem,
-            this.estadosToolStripMenuItem,
-            this.condicionesToolStripMenuItem});
+            this.admin_users,
+            this.admin_parques,
+            this.admin_actividades,
+            this.admin_reportes,
+            this.admin_catalogos});
+            this.menuAdmin.Enabled = false;
             this.menuAdmin.Name = "menuAdmin";
             this.menuAdmin.Size = new System.Drawing.Size(71, 27);
             this.menuAdmin.Text = "Admin";
-            this.menuAdmin.Enabled = false;
             // 
-            // usuariosToolStripMenuItem
+            // admin_users
             // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.usuariosToolStripMenuItem.Text = "Usuarios";
+            this.admin_users.Name = "admin_users";
+            this.admin_users.Size = new System.Drawing.Size(180, 22);
+            this.admin_users.Text = "Usuarios";
+            this.admin_users.Click += new System.EventHandler(this.admin_users_Click);
             // 
-            // parquesToolStripMenuItem
+            // admin_parques
             // 
-            this.parquesToolStripMenuItem.Name = "parquesToolStripMenuItem";
-            this.parquesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.parquesToolStripMenuItem.Text = "Parques";
+            this.admin_parques.Name = "admin_parques";
+            this.admin_parques.Size = new System.Drawing.Size(180, 22);
+            this.admin_parques.Text = "Parques";
+            this.admin_parques.Click += new System.EventHandler(this.admin_parques_Click);
             // 
-            // actividadesToolStripMenuItem
+            // admin_actividades
             // 
-            this.actividadesToolStripMenuItem.Name = "actividadesToolStripMenuItem";
-            this.actividadesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.actividadesToolStripMenuItem.Text = "Actividades";
+            this.admin_actividades.Name = "admin_actividades";
+            this.admin_actividades.Size = new System.Drawing.Size(180, 22);
+            this.admin_actividades.Text = "Actividades";
+            this.admin_actividades.Click += new System.EventHandler(this.admin_actividades_Click);
             // 
-            // reportesToolStripMenuItem
+            // admin_reportes
             // 
-            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.reportesToolStripMenuItem.Text = "Reportes";
+            this.admin_reportes.Name = "admin_reportes";
+            this.admin_reportes.Size = new System.Drawing.Size(180, 22);
+            this.admin_reportes.Text = "Reportes";
+            this.admin_reportes.Click += new System.EventHandler(this.admin_reportes_Click);
             // 
-            // categoriasToolStripMenuItem
+            // admin_catalogos
             // 
-            this.categoriasToolStripMenuItem.Name = "categoriasToolStripMenuItem";
-            this.categoriasToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.categoriasToolStripMenuItem.Text = "Categorias";
+            this.admin_catalogos.Name = "admin_catalogos";
+            this.admin_catalogos.Size = new System.Drawing.Size(180, 22);
+            this.admin_catalogos.Text = "Catalogos";
+            this.admin_catalogos.Click += new System.EventHandler(this.admin_catalogos_Click);
             // 
-            // estadosToolStripMenuItem
-            // 
-            this.estadosToolStripMenuItem.Name = "estadosToolStripMenuItem";
-            this.estadosToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.estadosToolStripMenuItem.Text = "Estados";
-            // 
-            // condicionesToolStripMenuItem
-            // 
-            this.condicionesToolStripMenuItem.Name = "condicionesToolStripMenuItem";
-            this.condicionesToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.condicionesToolStripMenuItem.Text = "Condiciones";
-            // 
-            // Form1
+            // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 311);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MainMenuStrip = this.SGPAMenu;
-            this.Name = "Form1";
+            this.Name = "WelcomeForm";
             this.Text = "Sistema de Gestion de Parques y Areas verdes";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -271,19 +262,17 @@
         private System.Windows.Forms.ToolStripMenuItem user_login;
         private System.Windows.Forms.ToolStripMenuItem user_logout;
         private System.Windows.Forms.ToolStripMenuItem user_register;
-        private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem busquedaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem buscarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem misReportesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem parquesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem actividadesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem categoriasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem estadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem condicionesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listadoParques;
+        private System.Windows.Forms.ToolStripMenuItem busquedaParques;
+        private System.Windows.Forms.ToolStripMenuItem listadoActividades;
+        private System.Windows.Forms.ToolStripMenuItem busquedaActividades;
+        private System.Windows.Forms.ToolStripMenuItem listadoReportes;
+        private System.Windows.Forms.ToolStripMenuItem busquedaReportes;
+        private System.Windows.Forms.ToolStripMenuItem admin_users;
+        private System.Windows.Forms.ToolStripMenuItem admin_parques;
+        private System.Windows.Forms.ToolStripMenuItem admin_actividades;
+        private System.Windows.Forms.ToolStripMenuItem admin_reportes;
+        private System.Windows.Forms.ToolStripMenuItem admin_catalogos;
     }
 }
 
