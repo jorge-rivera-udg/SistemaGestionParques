@@ -3,6 +3,7 @@ using ProyectoFinalDemo.modelos;
 using ProyectoFinalDemo.utils;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace ProyectoFinalDemo.controladores
                     conexion.Close();
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error insertando imagen: {ex.Message}");
                 return false;
@@ -57,7 +58,7 @@ namespace ProyectoFinalDemo.controladores
                     foto = new Foto
                     {
                         Id = Convert.ToInt32(reader["id"]),
-                        Imagen = ImagenUtils.ConvertirBlobAImagen(reader["imagen"] as byte[]),
+                        //Imagen = ImagenUtils.ConvertirByteArrayAImage(reader["imagen"] as byte[]),
                         Fuente = Convert.ToString(reader["fuente"]),
                         FuenteId = Convert.ToInt32(reader["fuente_id"]),
                         Usuario = Convert.ToString(reader["usuario"])
@@ -73,7 +74,7 @@ namespace ProyectoFinalDemo.controladores
         {
             List<Foto> imagenes = null;
             Foto foto = null;
-            using(MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
+            using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
             {
                 conexion.Open();
                 string query = "SLELCT * FROM imagenes WHERE usuario = @usuario";
@@ -85,7 +86,7 @@ namespace ProyectoFinalDemo.controladores
                     foto = new Foto
                     {
                         Id = Convert.ToInt32(reader["id"]),
-                        Imagen = ImagenUtils.ConvertirBlobAImagen(reader["imagen"] as byte[]),
+                        Imagen = ImagenUtils.ConvertirByteArrayAImage(reader["imagen"] as byte[]),
                         Fuente = Convert.ToString(reader["fuente"]),
                         FuenteId = Convert.ToInt32(reader["fuente_id"]),
                         Usuario = Convert.ToString(reader["usuario"])
@@ -101,7 +102,7 @@ namespace ProyectoFinalDemo.controladores
         {
             try
             {
-                using(MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
+                using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
                 {
                     conexion.Open();
                     string query = "DELETE FROM imagenes WHERE id=@id";
@@ -109,13 +110,29 @@ namespace ProyectoFinalDemo.controladores
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.ExecuteScalar();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error borrando la imagen: {ex.Message}");
                 return false;
             }
             MessageBox.Show("La imagen fue borrada exitosamente");
             return true;
+        }
+
+        public Image obtenerPorId(int id)
+        {
+            Image imagen = null;
+            using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
+            {
+                conexion.Open();
+                string query = "SELECT imagen FROM imagenes WHERE id=@id";
+                MySqlCommand cmd = new MySqlCommand(query, conexion);
+                cmd.Parameters.AddWithValue("@id", id);
+                imagen = ImagenUtils.ConvertirByteArrayAImage(cmd.ExecuteScalar() as byte[]);
+                conexion.Close();
+            }
+            return imagen;
         }
     }
 }

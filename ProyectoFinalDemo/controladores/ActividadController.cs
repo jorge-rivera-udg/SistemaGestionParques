@@ -230,5 +230,41 @@ namespace ProyectoFinalDemo.controladores
             }
             return actividades;
         }
+
+        public List<Actividad> ObtenerPorUsuario(string usuario)
+        {
+            List<Actividad> actividades = new List<Actividad>();
+            Actividad act = null;
+            try
+            {
+                using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
+                {
+                    conexion.Open();
+                    string query = "SELECT a.* FROM actividades a JOIN participaciones p ON a.id = p.actividad WHERE p.usuario = @usuario";
+                    MySqlCommand cmd = new MySqlCommand(query, conexion);
+                    cmd.Parameters.AddWithValue("@usuario", usuario);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        act = new Actividad
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Nombre = Convert.ToString(reader["nombre"]),
+                            Fecha = Convert.ToDateTime(reader["fecha"]),
+                            Descripcion = Convert.ToString(reader["descripcion"]),
+                            Parque = Convert.ToInt32(reader["parque"]),
+                            Categoria = Convert.ToInt32(reader["categoria"])
+                        };
+                        actividades.Add(act);
+                    }
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error obteniendo actividades por usuario: {ex.Message}");
+            }
+            return actividades;
+        }
     }
 }

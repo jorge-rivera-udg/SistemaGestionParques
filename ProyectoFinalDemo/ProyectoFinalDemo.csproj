@@ -105,7 +105,19 @@
     <Compile Include="controladores\ParqueController.cs" />
     <Compile Include="controladores\ReporteController.cs" />
     <Compile Include="controladores\ParticipacionController.cs" />
-    <Compile Include="utils\ImagenUtils.cs" />
+    <Compile Include="common\utils\ImagenUtils.cs" />
+    <Compile Include="vistas\Actividades\GestionActividadesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistas\Actividades\GestionActividadesForm.Designer.cs">
+      <DependentUpon>GestionActividadesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\FotoDisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistas\FotoDisplayForm.Designer.cs">
+      <DependentUpon>FotoDisplayForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="vistas\GestionCatalogosForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +129,12 @@
     </Compile>
     <Compile Include="vistas\Parques\GestionParquesForm.Designer.cs">
       <DependentUpon>GestionParquesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vistas\Reportes\GestionReportesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistas\Reportes\GestionReportesForm.Designer.cs">
+      <DependentUpon>GestionReportesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
@@ -135,7 +153,7 @@
     <Compile Include="modelos\Participacion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="utils\Constantes.cs" />
+    <Compile Include="common\utils\Constantes.cs" />
     <Compile Include="vistas\GestionUsuarioForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,11 +166,20 @@
     <Compile Include="vistas\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="vistas\Actividades\GestionActividadesForm.resx">
+      <DependentUpon>GestionActividadesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\FotoDisplayForm.resx">
+      <DependentUpon>FotoDisplayForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="vistas\GestionCatalogosForm.resx">
       <DependentUpon>GestionCatalogosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vistas\Parques\GestionParquesForm.resx">
       <DependentUpon>GestionParquesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistas\Reportes\GestionReportesForm.resx">
+      <DependentUpon>GestionReportesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>

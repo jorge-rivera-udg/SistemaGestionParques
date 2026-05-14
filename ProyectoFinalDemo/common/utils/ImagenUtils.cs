@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -31,12 +32,30 @@ namespace ProyectoFinalDemo.utils
             }
         }
 
+        public static Image ConvertirByteArrayAImage(byte[] bytes)
+        {
+            if (bytes.Length == 0) return null;
+            try
+            {
+                using (MemoryStream ms = new MemoryStream(bytes))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine($"Invalid parameter: {ex.Message}");
+                return null;
+            }
+        }
+
+
         public static byte[] ConvertirImagenABlob(Image imagen)
         {
             if (imagen == null) return new byte[0];
             using (MemoryStream ms = new MemoryStream())
             {
-                imagen.Save(ms, imagen.RawFormat);
+                imagen.Save(ms, ImageFormat.Png);
                 return ms.ToArray();
             }
         }

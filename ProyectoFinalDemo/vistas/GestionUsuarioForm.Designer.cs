@@ -317,6 +317,9 @@
             // listaUsuarios
             // 
             this.listaUsuarios.AllowUserToDeleteRows = false;
+            this.listaUsuarios.AllowUserToResizeColumns = false;
+            this.listaUsuarios.AllowUserToResizeRows = false;
+            this.listaUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.listaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.registro,
@@ -325,7 +328,9 @@
             this.email,
             this.usuario,
             this.rol});
+            this.listaUsuarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.listaUsuarios.Location = new System.Drawing.Point(12, 361);
+            this.listaUsuarios.MultiSelect = false;
             this.listaUsuarios.Name = "listaUsuarios";
             this.listaUsuarios.ReadOnly = true;
             this.listaUsuarios.Size = new System.Drawing.Size(560, 188);
@@ -463,7 +468,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "GestionUsuarioForm";
-            this.Text = "AdministradoresForm";
+            this.Text = "Usuarios";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaUsuarios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sqlResultBindingSource)).EndInit();

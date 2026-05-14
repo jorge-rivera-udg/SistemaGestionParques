@@ -19,7 +19,7 @@ namespace ProyectoFinalDemo.controladores
                 try
                 {
                     conexion.Open();
-                    string query = "INSERT INTO parque (nombre, ubicacion, condicion) VALUES (@nombre, @ubicacion, @condicion)";
+                    string query = "INSERT INTO parques (nombre, ubicacion, condicion) VALUES (@nombre, @ubicacion, @condicion)";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     cmd.Parameters.AddWithValue("@nombre", parque.Nombre);
                     cmd.Parameters.AddWithValue("@ubicacion", parque.Ubicacion);
@@ -37,6 +37,32 @@ namespace ProyectoFinalDemo.controladores
             }
         }
 
+        public bool Actualizar(Parque parque)
+        {
+            using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
+            {
+                try
+                {
+                    conexion.Open();
+                    string query = "UPDATE parques SET nombre = @nombre, ubicacion = @ubicacion, condicion = @condicion WHERE id = @id";
+                    MySqlCommand cmd = new MySqlCommand(query, conexion);
+                    cmd.Parameters.AddWithValue("@nombre", parque.Nombre);
+                    cmd.Parameters.AddWithValue("@ubicacion", parque.Ubicacion);
+                    cmd.Parameters.AddWithValue("@condicion", parque.Condicion);
+                    cmd.Parameters.AddWithValue("@id", parque.Id);
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al actualizar el parque: {ex.Message}");
+                    return false;
+                }
+                MessageBox.Show("Parque actualizado correctamente.");
+                return true;
+            }
+        }
+
         public List<Parque> ObtenerTodos()
         {
             List<Parque> parques = new List<Parque>();
@@ -46,7 +72,7 @@ namespace ProyectoFinalDemo.controladores
                 using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
                 {
                     conexion.Open();
-                    string query = "SELECT * FROM parque";
+                    string query = "SELECT * FROM parques";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     MySqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -78,7 +104,7 @@ namespace ProyectoFinalDemo.controladores
                 using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
                 {
                     conexion.Open();
-                    string query = "SELECT * FROM parque WHERE id = @id";
+                    string query = "SELECT * FROM parques WHERE id = @id";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     cmd.Parameters.AddWithValue("@id", id);
                     MySqlDataReader reader = cmd.ExecuteReader();

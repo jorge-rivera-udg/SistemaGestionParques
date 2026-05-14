@@ -1,6 +1,8 @@
 ﻿using ProyectoFinalDemo.common;
 using ProyectoFinalDemo.modelos;
 using ProyectoFinalDemo.vistas;
+using ProyectoFinalDemo.vistas.Actividades;
+using ProyectoFinalDemo.vistas.Parques;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +19,8 @@ namespace ProyectoFinalDemo
     {
         private GestionUsuarioForm usersForm;
         private GestionCatalogosForm catalogosForm;
+        private GestionParquesForm parquesForm;
+        private GestionActividadesForm actividadesForm;
         private Sesion sesion;
         private Login login;
         public WelcomeForm()
@@ -25,7 +29,8 @@ namespace ProyectoFinalDemo
             resetStatus();
             sesion = new Sesion();
             //usersForm = new GestionUsuarioForm("usuario");
-            catalogosForm = new GestionCatalogosForm();
+            //catalogosForm = new GestionCatalogosForm();
+            //parquesForm = new GestionParquesForm(sesion);
             this.Activated += new EventHandler(check_status);
             this.Deactivate += new EventHandler(bye_for_now);
         }
@@ -114,7 +119,7 @@ namespace ProyectoFinalDemo
 
         private void admin_catalogos_Click(object sender, EventArgs e)
         {
-            if (catalogosForm.IsDisposed)
+            if (catalogosForm == null || catalogosForm.IsDisposed)
             {
                 catalogosForm = new GestionCatalogosForm();
             }
@@ -129,25 +134,54 @@ namespace ProyectoFinalDemo
 
         private void listadoParques_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void busquedaParques_Click(object sender, EventArgs e)
-        {
-
+            if (parquesForm == null || parquesForm.IsDisposed)
+            {
+                parquesForm = new GestionParquesForm(sesion);
+            }
+            parquesForm.Show();
         }
 
         private void admin_parques_Click(object sender, EventArgs e)
         {
-
+            parquesForm = new GestionParquesForm(sesion);
+            parquesForm.Show();
         }
 
         private void admin_actividades_Click(object sender, EventArgs e)
         {
-
+            abrirFormularioActividades(null);
         }
 
         private void admin_reportes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listadoActividades_Click(object sender, EventArgs e)
+        {
+            abrirFormularioActividades(null);
+        }
+
+        private void misActividadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            abrirFormularioActividades("mis");
+        }
+
+        private void abrirFormularioActividades(string vista)
+        {
+            if (actividadesForm == null || actividadesForm.IsDisposed)
+            {
+                actividadesForm = new GestionActividadesForm(sesion, vista);
+            }
+            actividadesForm.Show();
+        }
+
+        private void misReportes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listadoReportes_Click(object sender, EventArgs e)
         {
 
         }

@@ -19,7 +19,7 @@ namespace ProyectoFinalDemo.controladores
                 using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
                 {
                     conexion.Open();
-                    string query = "INSERT INTO participacion (usuario, actividad) VALUES (@usuario, @actividad)";
+                    string query = "INSERT INTO participaciones (usuario, actividad) VALUES (@usuario, @actividad)";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     cmd.Parameters.AddWithValue("@usuario", participacion.Usuario);
                     cmd.Parameters.AddWithValue("@actividad", participacion.Actividad);
@@ -43,7 +43,7 @@ namespace ProyectoFinalDemo.controladores
                 using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
                 {
                     conexion.Open();
-                    string query = "DELETE FROM participacion WHERE usuario = @usuario AND actividad = @actividad";
+                    string query = "DELETE FROM participaciones WHERE usuario = @usuario AND actividad = @actividad";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     cmd.Parameters.AddWithValue("@actividad", actividad);
@@ -69,7 +69,7 @@ namespace ProyectoFinalDemo.controladores
                 using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
                 {
                     conexion.Open();
-                    string query = "SELECT * FROM participacion WHERE usuario = @usuario";
+                    string query = "SELECT * FROM participaciones WHERE usuario = @usuario";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     cmd.Parameters.AddWithValue("@usuario", usuario);
                     MySqlDataReader reader = cmd.ExecuteReader();
@@ -101,7 +101,7 @@ namespace ProyectoFinalDemo.controladores
                 using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
                 {
                     conexion.Open();
-                    string query = "SELECT * FROM participacion";
+                    string query = "SELECT * FROM participaciones";
                     MySqlCommand cmd = new MySqlCommand(query, conexion);
                     MySqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
