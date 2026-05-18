@@ -180,6 +180,7 @@ namespace ProyectoFinalDemo.vistas
                                     txtNombres.Text = item.Nombres;
                                     txtApellidos.Text = item.Apellidos;
                                     txtContrasena.Text = item.Contrasena;
+                                    txtContrasena2.Text = item.Contrasena;
                                     txtUsuario.Text = item.Usuario;
                                     txtEmail.Text = item.Email;
                                     txtTelefono.Text = item.Telefono;

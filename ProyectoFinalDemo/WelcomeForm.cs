@@ -1,6 +1,9 @@
 ﻿using ProyectoFinalDemo.common;
 using ProyectoFinalDemo.modelos;
 using ProyectoFinalDemo.vistas;
+using ProyectoFinalDemo.vistas.Actividades;
+using ProyectoFinalDemo.vistas.Parques;
+using ProyectoFinalDemo.vistas.Reportes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +20,9 @@ namespace ProyectoFinalDemo
     {
         private GestionUsuarioForm usersForm;
         private GestionCatalogosForm catalogosForm;
+        private GestionParquesForm parquesForm;
+        private GestionActividadesForm actividadesForm;
+        private GestionReportesForm reportesForm;
         private Sesion sesion;
         private Login login;
         public WelcomeForm()
@@ -25,7 +31,8 @@ namespace ProyectoFinalDemo
             resetStatus();
             sesion = new Sesion();
             //usersForm = new GestionUsuarioForm("usuario");
-            catalogosForm = new GestionCatalogosForm();
+            //catalogosForm = new GestionCatalogosForm();
+            //parquesForm = new GestionParquesForm(sesion);
             this.Activated += new EventHandler(check_status);
             this.Deactivate += new EventHandler(bye_for_now);
         }
@@ -57,10 +64,10 @@ namespace ProyectoFinalDemo
         private void check_status(object sender, EventArgs e)
         {
             Console.WriteLine($"Usuario en ventana principal: {sesion.Usuario}");
-            if(sesion.Usuario != null)
+            if (sesion.Usuario != null)
             {
                 DateTime timeout = sesion.Inicio;
-                if(sesion.Usuario!=null)
+                if (sesion.Usuario != null)
                 {
                     habilitar_funciones(sesion.Usuario.Rol);
                 }
@@ -79,7 +86,8 @@ namespace ProyectoFinalDemo
             string[] power_users = { "ADMIN", "SUPER", "CONSULTOR" };
             Console.WriteLine($"Rol recibido: {rol}");
 
-            if (power_users.Contains(rol)) {
+            if (power_users.Contains(rol))
+            {
                 Console.WriteLine("super usuario");
                 menuAdmin.Enabled = true;
 
@@ -114,7 +122,7 @@ namespace ProyectoFinalDemo
 
         private void admin_catalogos_Click(object sender, EventArgs e)
         {
-            if (catalogosForm.IsDisposed)
+            if (catalogosForm == null || catalogosForm.IsDisposed)
             {
                 catalogosForm = new GestionCatalogosForm();
             }
@@ -127,29 +135,71 @@ namespace ProyectoFinalDemo
             usersForm.Show();
         }
 
-        private void listadoParques_Click(object sender, EventArgs e)
+        private void abrirFormularioParques()
         {
-
+            if (parquesForm == null || parquesForm.IsDisposed)
+            {
+                parquesForm = new GestionParquesForm(sesion);
+            }
+            parquesForm.Show();
         }
 
-        private void busquedaParques_Click(object sender, EventArgs e)
+        private void listadoParques_Click(object sender, EventArgs e)
         {
-
+            abrirFormularioParques();
         }
 
         private void admin_parques_Click(object sender, EventArgs e)
         {
-
+            abrirFormularioParques();
         }
 
         private void admin_actividades_Click(object sender, EventArgs e)
         {
-
+            abrirFormularioActividades(null);
         }
 
         private void admin_reportes_Click(object sender, EventArgs e)
         {
+            abrirFormularioReportes(null);
+        }
 
+        private void listadoActividades_Click(object sender, EventArgs e)
+        {
+            abrirFormularioActividades(null);
+        }
+
+        private void misActividadesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            abrirFormularioActividades("mis");
+        }
+
+        private void abrirFormularioActividades(string vista)
+        {
+            if (actividadesForm == null || actividadesForm.IsDisposed)
+            {
+                actividadesForm = new GestionActividadesForm(sesion, vista);
+            }
+            actividadesForm.Show();
+        }
+
+        private void misReportes_Click(object sender, EventArgs e)
+        {
+            abrirFormularioReportes("mis");
+        }
+
+        private void listadoReportes_Click(object sender, EventArgs e)
+        {
+            abrirFormularioReportes(null);
+        }
+
+        private void abrirFormularioReportes(string vista)
+        {
+            if (reportesForm == null || reportesForm.IsDisposed)
+            {
+                reportesForm = new GestionReportesForm(sesion, vista);
+            }
+            reportesForm.Show();
         }
     }
 }

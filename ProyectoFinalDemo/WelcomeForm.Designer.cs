@@ -36,19 +36,18 @@
             this.user_register = new System.Windows.Forms.ToolStripMenuItem();
             this.menuParques = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoParques = new System.Windows.Forms.ToolStripMenuItem();
-            this.busquedaParques = new System.Windows.Forms.ToolStripMenuItem();
             this.menuActividades = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoActividades = new System.Windows.Forms.ToolStripMenuItem();
-            this.busquedaActividades = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoReportes = new System.Windows.Forms.ToolStripMenuItem();
-            this.busquedaReportes = new System.Windows.Forms.ToolStripMenuItem();
+            this.misReportes = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.admin_users = new System.Windows.Forms.ToolStripMenuItem();
             this.admin_parques = new System.Windows.Forms.ToolStripMenuItem();
             this.admin_actividades = new System.Windows.Forms.ToolStripMenuItem();
             this.admin_reportes = new System.Windows.Forms.ToolStripMenuItem();
             this.admin_catalogos = new System.Windows.Forms.ToolStripMenuItem();
+            this.misActividadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.SGPAMenu.SuspendLayout();
             this.SuspendLayout();
@@ -120,8 +119,7 @@
             // menuParques
             // 
             this.menuParques.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listadoParques,
-            this.busquedaParques});
+            this.listadoParques});
             this.menuParques.Enabled = false;
             this.menuParques.Name = "menuParques";
             this.menuParques.Size = new System.Drawing.Size(85, 27);
@@ -130,22 +128,15 @@
             // listadoParques
             // 
             this.listadoParques.Name = "listadoParques";
-            this.listadoParques.Size = new System.Drawing.Size(156, 22);
-            this.listadoParques.Text = "Listado";
+            this.listadoParques.Size = new System.Drawing.Size(189, 22);
+            this.listadoParques.Text = "Mostrar todos";
             this.listadoParques.Click += new System.EventHandler(this.listadoParques_Click);
-            // 
-            // busquedaParques
-            // 
-            this.busquedaParques.Name = "busquedaParques";
-            this.busquedaParques.Size = new System.Drawing.Size(156, 22);
-            this.busquedaParques.Text = "Busqueda";
-            this.busquedaParques.Click += new System.EventHandler(this.busquedaParques_Click);
             // 
             // menuActividades
             // 
             this.menuActividades.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listadoActividades,
-            this.busquedaActividades});
+            this.misActividadesToolStripMenuItem});
             this.menuActividades.Enabled = false;
             this.menuActividades.Name = "menuActividades";
             this.menuActividades.Size = new System.Drawing.Size(114, 27);
@@ -154,20 +145,15 @@
             // listadoActividades
             // 
             this.listadoActividades.Name = "listadoActividades";
-            this.listadoActividades.Size = new System.Drawing.Size(156, 22);
-            this.listadoActividades.Text = "Listado";
-            // 
-            // busquedaActividades
-            // 
-            this.busquedaActividades.Name = "busquedaActividades";
-            this.busquedaActividades.Size = new System.Drawing.Size(156, 22);
-            this.busquedaActividades.Text = "Busqueda";
+            this.listadoActividades.Size = new System.Drawing.Size(202, 22);
+            this.listadoActividades.Text = "Mostrar Todas";
+            this.listadoActividades.Click += new System.EventHandler(this.listadoActividades_Click);
             // 
             // menuReportes
             // 
             this.menuReportes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.listadoReportes,
-            this.busquedaReportes});
+            this.misReportes});
             this.menuReportes.Enabled = false;
             this.menuReportes.Name = "menuReportes";
             this.menuReportes.Size = new System.Drawing.Size(93, 27);
@@ -176,14 +162,16 @@
             // listadoReportes
             // 
             this.listadoReportes.Name = "listadoReportes";
-            this.listadoReportes.Size = new System.Drawing.Size(156, 22);
-            this.listadoReportes.Text = "Listado";
+            this.listadoReportes.Size = new System.Drawing.Size(189, 22);
+            this.listadoReportes.Text = "Mostrar todos";
+            this.listadoReportes.Click += new System.EventHandler(this.listadoReportes_Click);
             // 
-            // busquedaReportes
+            // misReportes
             // 
-            this.busquedaReportes.Name = "busquedaReportes";
-            this.busquedaReportes.Size = new System.Drawing.Size(156, 22);
-            this.busquedaReportes.Text = "Busqueda";
+            this.misReportes.Name = "misReportes";
+            this.misReportes.Size = new System.Drawing.Size(189, 22);
+            this.misReportes.Text = "Mis reportes";
+            this.misReportes.Click += new System.EventHandler(this.misReportes_Click);
             // 
             // menuAdmin
             // 
@@ -233,6 +221,13 @@
             this.admin_catalogos.Text = "Catalogos";
             this.admin_catalogos.Click += new System.EventHandler(this.admin_catalogos_Click);
             // 
+            // misActividadesToolStripMenuItem
+            // 
+            this.misActividadesToolStripMenuItem.Name = "misActividadesToolStripMenuItem";
+            this.misActividadesToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.misActividadesToolStripMenuItem.Text = "Mis actividades";
+            this.misActividadesToolStripMenuItem.Click += new System.EventHandler(this.misActividadesToolStripMenuItem_Click);
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,16 +258,15 @@
         private System.Windows.Forms.ToolStripMenuItem user_logout;
         private System.Windows.Forms.ToolStripMenuItem user_register;
         private System.Windows.Forms.ToolStripMenuItem listadoParques;
-        private System.Windows.Forms.ToolStripMenuItem busquedaParques;
         private System.Windows.Forms.ToolStripMenuItem listadoActividades;
-        private System.Windows.Forms.ToolStripMenuItem busquedaActividades;
         private System.Windows.Forms.ToolStripMenuItem listadoReportes;
-        private System.Windows.Forms.ToolStripMenuItem busquedaReportes;
+        private System.Windows.Forms.ToolStripMenuItem misReportes;
         private System.Windows.Forms.ToolStripMenuItem admin_users;
         private System.Windows.Forms.ToolStripMenuItem admin_parques;
         private System.Windows.Forms.ToolStripMenuItem admin_actividades;
         private System.Windows.Forms.ToolStripMenuItem admin_reportes;
         private System.Windows.Forms.ToolStripMenuItem admin_catalogos;
+        private System.Windows.Forms.ToolStripMenuItem misActividadesToolStripMenuItem;
     }
 }
 
