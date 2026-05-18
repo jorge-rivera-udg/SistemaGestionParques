@@ -32,6 +32,7 @@
             this.dgvActividades = new System.Windows.Forms.DataGridView();
             this.picSelector = new System.Windows.Forms.ListView();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.previewPic = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnLoadPic = new System.Windows.Forms.Button();
             this.btnSavePic = new System.Windows.Forms.Button();
@@ -46,23 +47,20 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClean = new System.Windows.Forms.Button();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnUserAdd = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.dtFecha = new System.Windows.Forms.DateTimePicker();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.cmbParque = new System.Windows.Forms.ComboBox();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
-            this.previewPic = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvActividades)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.previewPic)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.previewPic)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -127,6 +125,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(308, 218);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
+            // previewPic
+            // 
+            this.previewPic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.previewPic.Location = new System.Drawing.Point(110, 3);
+            this.previewPic.Name = "previewPic";
+            this.previewPic.Size = new System.Drawing.Size(195, 212);
+            this.previewPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.previewPic.TabIndex = 0;
+            this.previewPic.TabStop = false;
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -175,8 +183,8 @@
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel4, 2);
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
             this.tableLayoutPanel4.Controls.Add(this.lblActividadId, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.label3, 0, 2);
@@ -184,7 +192,6 @@
             this.tableLayoutPanel4.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel4.Controls.Add(this.label6, 0, 5);
             this.tableLayoutPanel4.Controls.Add(this.flowLayoutPanel1, 0, 6);
-            this.tableLayoutPanel4.Controls.Add(this.flowLayoutPanel2, 1, 6);
             this.tableLayoutPanel4.Controls.Add(this.txtNombre, 1, 1);
             this.tableLayoutPanel4.Controls.Add(this.dtFecha, 1, 2);
             this.tableLayoutPanel4.Controls.Add(this.txtDescripcion, 1, 3);
@@ -196,11 +203,11 @@
             this.tableLayoutPanel4.RowCount = 7;
             this.tableLayoutPanel1.SetRowSpan(this.tableLayoutPanel4, 2);
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(464, 330);
             this.tableLayoutPanel4.TabIndex = 3;
@@ -212,7 +219,7 @@
             this.lblActividadId.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActividadId.Location = new System.Drawing.Point(3, 0);
             this.lblActividadId.Name = "lblActividadId";
-            this.lblActividadId.Size = new System.Drawing.Size(226, 49);
+            this.lblActividadId.Size = new System.Drawing.Size(156, 49);
             this.lblActividadId.TabIndex = 0;
             this.lblActividadId.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
@@ -223,7 +230,7 @@
             this.label2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 49);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(226, 42);
+            this.label2.Size = new System.Drawing.Size(156, 33);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -233,9 +240,9 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 91);
+            this.label3.Location = new System.Drawing.Point(3, 82);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(226, 42);
+            this.label3.Size = new System.Drawing.Size(156, 33);
             this.label3.TabIndex = 2;
             this.label3.Text = "Fecha";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -245,9 +252,9 @@
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 133);
+            this.label4.Location = new System.Drawing.Point(3, 115);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(226, 42);
+            this.label4.Size = new System.Drawing.Size(156, 82);
             this.label4.TabIndex = 3;
             this.label4.Text = "Descripcion";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -257,9 +264,9 @@
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 175);
+            this.label5.Location = new System.Drawing.Point(3, 197);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(226, 42);
+            this.label5.Size = new System.Drawing.Size(156, 33);
             this.label5.TabIndex = 4;
             this.label5.Text = "Parque";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -269,9 +276,9 @@
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 217);
+            this.label6.Location = new System.Drawing.Point(3, 230);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(226, 42);
+            this.label6.Size = new System.Drawing.Size(156, 33);
             this.label6.TabIndex = 5;
             this.label6.Text = "Categoria";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -281,13 +288,15 @@
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.Controls.Add(this.btnSave);
-            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
+            this.tableLayoutPanel4.SetColumnSpan(this.flowLayoutPanel1, 2);
+            this.flowLayoutPanel1.Controls.Add(this.btnUserAdd);
             this.flowLayoutPanel1.Controls.Add(this.btnClean);
+            this.flowLayoutPanel1.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel1.Controls.Add(this.btnSave);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 262);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 266);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(226, 65);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(458, 61);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // btnSave
@@ -295,7 +304,7 @@
             this.btnSave.AutoSize = true;
             this.btnSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(155, 3);
+            this.btnSave.Location = new System.Drawing.Point(109, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(68, 26);
             this.btnSave.TabIndex = 0;
@@ -308,7 +317,7 @@
             this.btnDelete.AutoSize = true;
             this.btnDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnDelete.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(83, 3);
+            this.btnDelete.Location = new System.Drawing.Point(183, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(66, 26);
             this.btnDelete.TabIndex = 1;
@@ -321,7 +330,7 @@
             this.btnClean.AutoSize = true;
             this.btnClean.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnClean.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClean.Location = new System.Drawing.Point(15, 3);
+            this.btnClean.Location = new System.Drawing.Point(255, 3);
             this.btnClean.Name = "btnClean";
             this.btnClean.Size = new System.Drawing.Size(62, 26);
             this.btnClean.TabIndex = 2;
@@ -329,22 +338,12 @@
             this.btnClean.UseVisualStyleBackColor = true;
             this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.btnUserAdd);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(235, 262);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(226, 65);
-            this.flowLayoutPanel2.TabIndex = 7;
-            // 
             // btnUserAdd
             // 
             this.btnUserAdd.AutoSize = true;
             this.btnUserAdd.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnUserAdd.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUserAdd.Location = new System.Drawing.Point(91, 3);
+            this.btnUserAdd.Location = new System.Drawing.Point(323, 3);
             this.btnUserAdd.Name = "btnUserAdd";
             this.btnUserAdd.Size = new System.Drawing.Size(132, 26);
             this.btnUserAdd.TabIndex = 0;
@@ -356,14 +355,14 @@
             // 
             this.txtNombre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNombre.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(235, 52);
+            this.txtNombre.Location = new System.Drawing.Point(165, 52);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(226, 23);
+            this.txtNombre.Size = new System.Drawing.Size(296, 23);
             this.txtNombre.TabIndex = 8;
             // 
             // dtFecha
             // 
-            this.dtFecha.Location = new System.Drawing.Point(235, 94);
+            this.dtFecha.Location = new System.Drawing.Point(165, 85);
             this.dtFecha.Name = "dtFecha";
             this.dtFecha.Size = new System.Drawing.Size(200, 20);
             this.dtFecha.TabIndex = 9;
@@ -372,9 +371,11 @@
             // 
             this.txtDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDescripcion.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(235, 136);
+            this.txtDescripcion.Location = new System.Drawing.Point(165, 118);
+            this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(226, 23);
+            this.txtDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDescripcion.Size = new System.Drawing.Size(296, 76);
             this.txtDescripcion.TabIndex = 10;
             // 
             // cmbParque
@@ -382,9 +383,9 @@
             this.cmbParque.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbParque.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbParque.FormattingEnabled = true;
-            this.cmbParque.Location = new System.Drawing.Point(235, 178);
+            this.cmbParque.Location = new System.Drawing.Point(165, 200);
             this.cmbParque.Name = "cmbParque";
-            this.cmbParque.Size = new System.Drawing.Size(226, 24);
+            this.cmbParque.Size = new System.Drawing.Size(296, 24);
             this.cmbParque.TabIndex = 11;
             // 
             // cmbCategoria
@@ -392,20 +393,10 @@
             this.cmbCategoria.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbCategoria.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCategoria.FormattingEnabled = true;
-            this.cmbCategoria.Location = new System.Drawing.Point(235, 220);
+            this.cmbCategoria.Location = new System.Drawing.Point(165, 233);
             this.cmbCategoria.Name = "cmbCategoria";
-            this.cmbCategoria.Size = new System.Drawing.Size(226, 24);
+            this.cmbCategoria.Size = new System.Drawing.Size(296, 24);
             this.cmbCategoria.TabIndex = 12;
-            // 
-            // previewPic
-            // 
-            this.previewPic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.previewPic.Location = new System.Drawing.Point(110, 3);
-            this.previewPic.Name = "previewPic";
-            this.previewPic.Size = new System.Drawing.Size(195, 212);
-            this.previewPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.previewPic.TabIndex = 0;
-            this.previewPic.TabStop = false;
             // 
             // openFileDialog1
             // 
@@ -422,14 +413,12 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvActividades)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.previewPic)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.previewPic)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -452,7 +441,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.DateTimePicker dtFecha;
         private System.Windows.Forms.TextBox txtDescripcion;

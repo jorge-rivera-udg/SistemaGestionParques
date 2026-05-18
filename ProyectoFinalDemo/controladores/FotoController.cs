@@ -98,6 +98,29 @@ namespace ProyectoFinalDemo.controladores
             return imagenes;
         }
 
+        public Boolean BorrarPorFuente(int id, string fuente)
+        {
+            try
+            {
+                using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
+                {
+                    conexion.Open();
+                    string query = "DELETE FROM imagenes WHERE fuente_id=@id and fuente=@fuente";
+                    MySqlCommand cmd = new MySqlCommand(query, conexion);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@fuente", fuente);
+                    cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error borrando las imagenes: {ex.Message}");
+                return false;
+            }
+            MessageBox.Show("Las imagenes fueron borradas exitosamente");
+            return true;
+        }
+
         public bool Borrar(int id)
         {
             try

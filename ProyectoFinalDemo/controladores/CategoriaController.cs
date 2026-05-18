@@ -97,15 +97,22 @@ namespace ProyectoFinalDemo.controladores
         {
             using (MySqlConnection conexion = new MySqlConnection(Constantes.MYSQL_DB_CONNECTION))
             {
-                conexion.Open();
-                string query = "DELETE FROM categorias WHERE id=@id";
-                MySqlCommand comando = new MySqlCommand(query, conexion);
-                comando.Parameters.AddWithValue("@id", id);
-                comando.ExecuteNonQuery();
-                conexion.Close();
-                return true;
+                try
+                {
+                    conexion.Open();
+                    string query = "DELETE FROM categorias WHERE id=@id";
+                    MySqlCommand comando = new MySqlCommand(query, conexion);
+                    comando.Parameters.AddWithValue("@id", id);
+                    comando.ExecuteNonQuery();
+                    conexion.Close();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error eliminando datos: {ex.Message}");
+                }
+                return false;
             }
-            return false;
         }
     }
 }

@@ -3,6 +3,7 @@ using ProyectoFinalDemo.modelos;
 using ProyectoFinalDemo.vistas;
 using ProyectoFinalDemo.vistas.Actividades;
 using ProyectoFinalDemo.vistas.Parques;
+using ProyectoFinalDemo.vistas.Reportes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace ProyectoFinalDemo
         private GestionCatalogosForm catalogosForm;
         private GestionParquesForm parquesForm;
         private GestionActividadesForm actividadesForm;
+        private GestionReportesForm reportesForm;
         private Sesion sesion;
         private Login login;
         public WelcomeForm()
@@ -62,10 +64,10 @@ namespace ProyectoFinalDemo
         private void check_status(object sender, EventArgs e)
         {
             Console.WriteLine($"Usuario en ventana principal: {sesion.Usuario}");
-            if(sesion.Usuario != null)
+            if (sesion.Usuario != null)
             {
                 DateTime timeout = sesion.Inicio;
-                if(sesion.Usuario!=null)
+                if (sesion.Usuario != null)
                 {
                     habilitar_funciones(sesion.Usuario.Rol);
                 }
@@ -84,7 +86,8 @@ namespace ProyectoFinalDemo
             string[] power_users = { "ADMIN", "SUPER", "CONSULTOR" };
             Console.WriteLine($"Rol recibido: {rol}");
 
-            if (power_users.Contains(rol)) {
+            if (power_users.Contains(rol))
+            {
                 Console.WriteLine("super usuario");
                 menuAdmin.Enabled = true;
 
@@ -132,7 +135,7 @@ namespace ProyectoFinalDemo
             usersForm.Show();
         }
 
-        private void listadoParques_Click(object sender, EventArgs e)
+        private void abrirFormularioParques()
         {
             if (parquesForm == null || parquesForm.IsDisposed)
             {
@@ -141,10 +144,14 @@ namespace ProyectoFinalDemo
             parquesForm.Show();
         }
 
+        private void listadoParques_Click(object sender, EventArgs e)
+        {
+            abrirFormularioParques();
+        }
+
         private void admin_parques_Click(object sender, EventArgs e)
         {
-            parquesForm = new GestionParquesForm(sesion);
-            parquesForm.Show();
+            abrirFormularioParques();
         }
 
         private void admin_actividades_Click(object sender, EventArgs e)
@@ -154,7 +161,7 @@ namespace ProyectoFinalDemo
 
         private void admin_reportes_Click(object sender, EventArgs e)
         {
-
+            abrirFormularioReportes(null);
         }
 
         private void listadoActividades_Click(object sender, EventArgs e)
@@ -178,12 +185,21 @@ namespace ProyectoFinalDemo
 
         private void misReportes_Click(object sender, EventArgs e)
         {
-
+            abrirFormularioReportes("mis");
         }
 
         private void listadoReportes_Click(object sender, EventArgs e)
         {
+            abrirFormularioReportes(null);
+        }
 
+        private void abrirFormularioReportes(string vista)
+        {
+            if (reportesForm == null || reportesForm.IsDisposed)
+            {
+                reportesForm = new GestionReportesForm(sesion, vista);
+            }
+            reportesForm.Show();
         }
     }
 }
